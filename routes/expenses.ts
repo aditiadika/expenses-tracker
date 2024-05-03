@@ -13,13 +13,18 @@ const fakeExpenses: Expense[] = [
     { id: 3, name: "Utilities", amount: 200 },
 ]
 
+export const expenseSchema = z.object({
+    name: z.string(),
+    amount: z.number(),
+})
+
 export const expensesRoute = new Hono()
+
 .get('/', (c) => {
     return c.json({ expenses: fakeExpenses })
 })
 .post('/', async (c) => {
-    const expense: Expense = await c.req.json()
-    console.log(expense.amount)
-    console.log(expense)
+    const data = await c.req.json()
+    const expense = expenseSchema.parse(data)
     return c.json(expense)
 })
