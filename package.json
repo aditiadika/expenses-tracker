@@ -1,7 +1,11 @@
 {
   "name": "bun-hono",
-  "module": "index.ts",
+  "module": "server/index.ts",
   "type": "module",
+  "scripts": {
+    "start": "bun server/index.ts",
+    "dev": "bun watch server/index.ts"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },
